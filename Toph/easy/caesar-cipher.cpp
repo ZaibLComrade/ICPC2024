@@ -20,8 +20,10 @@ Alpha getAlphaType(char c) {
 int main() {
 	char plainText[MAXBUFFER];
 	char cipherText[MAXLEN];
-	int shift = 3;
+	int shift = 0;
 	
+	cin >> shift;
+	cin.ignore();
 	cin.getline(plainText, MAXBUFFER);
 	
 	for(int i = 0, j = 0; plainText[i] != '\0'; i++) {
@@ -29,10 +31,8 @@ int main() {
 		Alpha charType = getAlphaType(c);
 		int shiftedChar = c;
 		if(charType != NonAlpha) {
-			cout << "unshifted " << shiftedChar;
 			if(charType == Capital) shiftedChar = ((c - 'A' + shift) % ALPHALIMIT) + 'A';
 			else shiftedChar = ((c - 'a' + shift) % ALPHALIMIT) + 'a';
-			cout << " shifted " << shiftedChar << endl;
 			cipherText[j] = static_cast<char>(shiftedChar);
 		} else {
 			cipherText[j] = c;
@@ -41,9 +41,7 @@ int main() {
 		cipherText[j] = '\0';
 	}
 	
-	for(int i = 0; cipherText[i] != '\0'; i++) {
-		cout << cipherText << endl;
-	}
+	cout << cipherText << endl;
 	
 	return 0;
 }
