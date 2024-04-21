@@ -1,17 +1,21 @@
 // https://toph.co/p/big-factorials
 
 #include <iostream>
-#define MAXLEN 50
-#define MAXINT 999999999
+#include <climits>
 using namespace std;
 
 int main() {
-	int num;
-	char fact[MAXLEN];
-	cin >> num;
+	int num = 20;
+	int trail = 0;
+	unsigned long long int fact = 1;
 	
+	for(int i = 2; i <= num; i++) {
+		fact *= i;
+		trail = fact % 10000;
+	}
 	
-	cout << num << endl;
+	if(fact == 0) cout << "0000" << endl;
+	else cout << trail << endl;
 	
 	return 0;
 }
